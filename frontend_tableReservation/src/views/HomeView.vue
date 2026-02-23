@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useLaudadeStore } from '@/stores/laudadeStore';
+import laudadePaneel from '@/components/icons/laudadePaneel.vue';
+
 
 const store = useLaudadeStore()
 
@@ -10,11 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <ul>
-      <li v-for="laud in store.lauad" :key="laud.id">
-        Laud {{ laud.lauaNumber }}, kohti: {{ laud.kohtadeArv }}
-      </li>
-    </ul>
-  </main>
+  <laudadePaneel></laudadePaneel>
 </template>
+
+<style scoped></style>
