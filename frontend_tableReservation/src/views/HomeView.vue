@@ -13,7 +13,7 @@ onMounted(() => {
   <main>
     <ul>
       <li v-for="laud in store.lauad" :key="laud.id">
-        Laud {{ laud.lauaNumber }}, kohti: {{ laud.suurus }}
+        Laud {{ laud.lauaNumber }}, kohti: {{ laud.kohtadeArv }}
       </li>
     </ul>
   </main>
