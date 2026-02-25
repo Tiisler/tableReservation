@@ -21,16 +21,24 @@ public class LauaTeenus {
     @PostConstruct
     public void lisaAlgandmed() {
         if (lauaRepository.count() == 0) {
-            lauaRepository.save(new RestoraniLaud(1, 2, 50, 50, true));
-            lauaRepository.save(new RestoraniLaud(2, 4, 200, 50, false));
-            lauaRepository.save(new RestoraniLaud(3, 2, 350, 50, false));
-            lauaRepository.save(new RestoraniLaud(4, 8, 500, 50, false));
-            lauaRepository.save(new RestoraniLaud(5, 8, 650, 50, false));
-            lauaRepository.save(new RestoraniLaud(6, 2, 50, 150, true));
-            lauaRepository.save(new RestoraniLaud(7, 4, 200, 150, false));
-            lauaRepository.save(new RestoraniLaud(8, 2, 350, 150, false));
-            lauaRepository.save(new RestoraniLaud(9, 8, 500, 150, false));
-            lauaRepository.save(new RestoraniLaud(10, 2, 650, 150, false));
+
+            // Veranda
+            lauaRepository.save(new RestoraniLaud(1, 8, 500, 50, false));
+            lauaRepository.save(new RestoraniLaud(2, 8, 650, 50, false));
+            lauaRepository.save(new RestoraniLaud(3, 8, 500, 150, false));
+            lauaRepository.save(new RestoraniLaud(4, 2, 650, 150, false));
+
+            lauaRepository.save(new RestoraniLaud(5, 2, 64, 30, true));
+            lauaRepository.save(new RestoraniLaud(6, 4, 228, 30, false));
+            lauaRepository.save(new RestoraniLaud(7, 2, 397, 30, false));
+            
+        
+            lauaRepository.save(new RestoraniLaud(8, 2, 50, 150, true));
+            lauaRepository.save(new RestoraniLaud(9, 4, 200, 150, false));
+            
+            
+            lauaRepository.save(new RestoraniLaud(10, 2, 350, 150, false));
+    
         }
     }
 

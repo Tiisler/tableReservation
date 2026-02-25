@@ -5,8 +5,21 @@ const store = useLaudadeStore()
 
 </script>
 
+
 <template>
     <svg viewBox="0 0 750 600" preserveAspectRatio="xMidYMid meet">
+        <text x="625" y="30" class="tsooniSilt">VERANDA</text>
+        <text x="625" y="330" class="tsooniSilt">PRIVAATRUUM</text>
+        <text x="75" y="575" class="mangunurk">MÄNGUNURK</text>
+
+        <line x1="0" y1="120" x2="0" y2="500" class="aken" />
+        <line x1="750" y1="320" x2="750" y2="570" class="aken" />
+
+        <line x1="500" y1="300" x2="750" y2="300" class="sein" />
+        <line x1="500" y1="0" x2="500" y2="600" class="sein" />
+        <line x1="166" y1="0" x2="166" y2="100" class="sein" />
+        <line x1="332" y1="0" x2="332" y2="100" class="sein" />
+
         <g v-for="laud in store.lauad" :key="laud.id">
             <rect :x="laud.x" :y="laud.y" @click="store.laualeVajutus(laud)" :class="{
                 'broneeritud': laud.onBroneeritud,
@@ -28,8 +41,8 @@ const store = useLaudadeStore()
 rect {
     width: 40px;
     height: 40px;
-    rx:8;
-    ry:8;
+    rx: 8;
+    ry: 8;
 }
 
 text {
@@ -46,7 +59,8 @@ svg {
     max-width: 600px;
     height: auto;
     display: block;
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .broneeritud {
@@ -67,10 +81,8 @@ svg {
     cursor: pointer;
 }
 
-
-
 .valitud {
-    fill: #93aec4; 
+    fill: #93aec4;
     stroke: #516692;
     stroke-width: 2px;
     transform: scale(1.1);
@@ -79,13 +91,17 @@ svg {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-rect.valitd+text {
-    fill:black;
+.valitud+text {
+    font-weight: bold;
 }
 
 .soovitus {
     stroke: green;
     animation: pulseeriSoovitus 2s infinite ease-in-out;
+}
+
+rect.valitud.soovitus {
+    fill: rgb(111, 170, 111);
 }
 
 @keyframes pulseeriSoovitus {
@@ -100,5 +116,34 @@ rect.valitd+text {
     100% {
         filter: drop-shadow(0 0 2px green);
     }
+}
+
+
+.tsooniSilt {
+    fill: #9ca3af;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.sein {
+    stroke: black;
+    stroke-width: 2;
+}
+
+.aken {
+    stroke: #7bb2cf;
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+
+.mangunurk {
+    font-size: 15px;
+    fill: #dbc0e2;
+    text-anchor: middle;
+    font-weight: bold;
 }
 </style>
