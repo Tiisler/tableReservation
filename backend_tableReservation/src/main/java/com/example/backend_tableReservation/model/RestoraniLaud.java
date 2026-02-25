@@ -78,7 +78,7 @@ public class RestoraniLaud {
         this.y = y;
     }
 
-    public boolean getAknaJuures() {
+    public boolean isAknaJuures() {
         return aknaJuures;
     }
 

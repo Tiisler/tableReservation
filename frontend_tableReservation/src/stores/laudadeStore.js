@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useLaudadeStore = defineStore('laudadeStore', () => {
     const lauad = ref([])
     const valitudLaud = ref(null)
+    const soovitatudLaud = ref(null)
     const valitudLauaMiinused = ref([])
     const valitudLauaPlussid = ref([])
 
@@ -32,6 +33,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
                 body: JSON.stringify(eelistused)
             });
             const soovitus = await response.json();
+            soovitatudLaud.value = soovitus;
             valitudLaud.value = soovitus;
         } catch (error) {
             console.error("Viga soovituse leidmisel:", error);
@@ -43,6 +45,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
         valitudLaud,
         valitudLauaMiinused,
         valitudLauaPlussid,
+        soovitatudLaud,
         laadiLauad,
         laualeVajutus,
         saadaEelistused,

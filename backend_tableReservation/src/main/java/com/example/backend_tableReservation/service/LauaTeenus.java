@@ -35,21 +35,22 @@ public class LauaTeenus {
     }
 
     public List<RestoraniLaud> saaLauadSuvaliseBroneeringuga() {
-        List<RestoraniLaud> lauad = lauaRepository.findAll();
-        Random random = new Random();
-        for (RestoraniLaud laud : lauad) {
-            laud.setOnBroneeritud(random.nextBoolean());
-        }
-        return lauad;
+    List<RestoraniLaud> lauad = lauaRepository.findAll();
+    Random random = new Random();
+    for (RestoraniLaud laud : lauad) {
+        laud.setOnBroneeritud(random.nextBoolean());
     }
+    lauaRepository.saveAll(lauad); 
+    return lauad;
+}
 
     public RestoraniLaud arvutaParimLaud(KasutajaEelistused eelistused) {
         return lauaRepository.findAll().stream()
         .filter(l -> !l.isOnBroneeritud())
         .filter(l -> l.getKohtadeArv() >= eelistused.getInimesteArv())
         .sorted((l1, l2) -> {
-            int skoor1 = (l1.getAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
-            int skoor2 = (l2.getAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
+            int skoor1 = (l1.isAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
+            int skoor2 = (l2.isAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
             return Integer.compare(skoor2, skoor1);
         })
         .findFirst()
