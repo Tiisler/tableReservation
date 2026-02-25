@@ -6,14 +6,14 @@ const store = useLaudadeStore()
 </script>
 
 <template>
-    <svg>
+    <svg viewBox="0 0 750 600" preserveAspectRatio="xMidYMid meet">
         <g v-for="laud in store.lauad" :key="laud.id">
-            <rect :x="laud.x" :y="laud.y" :class="laud.onBroneeritud ? 'broneeritud' : 'saadaval'" />
+            <rect :x="laud.x" :y="laud.y" @click="store.laualeVajutus(laud)"
+                :class="laud.onBroneeritud ? 'broneeritud' : 'saadaval'" />
             <text :x="laud.x + 20" :y="laud.y + 20" dy=".3em"
                 :class="laud.onBroneeritud ? 'hiirBroneeritud' : 'hiirSaadaval'">
                 {{ laud.lauaNumber }}
             </text>
-
         </g>
     </svg>
 </template>
@@ -34,14 +34,17 @@ text {
 }
 
 svg {
-    width: 750px;
-    height: 600px;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
     border: 1px solid black;
 }
 
 .broneeritud {
     fill: rgb(26, 25, 25);
     cursor: not-allowed;
+    pointer-events: none;
 }
 
 .hiirBroneeritud {

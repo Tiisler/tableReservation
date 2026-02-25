@@ -17,15 +17,17 @@ public class RestoraniLaud {
     private int x;
     private int y;
     private boolean onBroneeritud;
+    private boolean aknaJuures;
 
     public RestoraniLaud() {}
 
-    public RestoraniLaud(int lauaNumber, int kohtadeArv, int x, int y) {
+    public RestoraniLaud(int lauaNumber, int kohtadeArv, int x, int y, boolean aknaJuures) {
         this.lauaNumber = lauaNumber;
         this.kohtadeArv = kohtadeArv;
         this.x = x;
         this.y = y;
         this.onBroneeritud = false;
+        this.aknaJuures = aknaJuures;
     } 
 
     public Long getId() {
@@ -76,5 +78,12 @@ public class RestoraniLaud {
         this.y = y;
     }
 
-    
+    public boolean getAknaJuures() {
+        return aknaJuures;
+    }
+
+    public void setAknaJuures(boolean aknaJuures) {
+        this.aknaJuures = aknaJuures;
+    }
+
 }
