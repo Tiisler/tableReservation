@@ -16,14 +16,9 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     const laualeVajutus = (laud) => {
         if (!laud.onBroneeritud) {
             valitudLaud.value = laud
-            muudaValitudMiinusedJaPlussid
         }
     };
 
-    const muudaValitudMiinusedJaPlussid = () => {
-        valitudLauaMiinused.value = []
-        valitudLauaPlussid.value = []
-    };
 
     const saadaEelistused = async (eelistused) => {
         try {

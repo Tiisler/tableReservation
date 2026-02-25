@@ -23,45 +23,79 @@ public class LauaTeenus {
         if (lauaRepository.count() == 0) {
 
             // Veranda
-            lauaRepository.save(new RestoraniLaud(1, 8, 500, 50, false));
-            lauaRepository.save(new RestoraniLaud(2, 8, 650, 50, false));
-            lauaRepository.save(new RestoraniLaud(3, 8, 500, 150, false));
-            lauaRepository.save(new RestoraniLaud(4, 2, 650, 150, false));
+            lauaRepository.save(new RestoraniLaud(1, 8, 550, 70, "veranda", true, false, false));
+            lauaRepository.save(new RestoraniLaud(2, 8, 660, 70, "veranda", true, false, false));
+            lauaRepository.save(new RestoraniLaud(3, 8, 550, 190, "veranda", false, false, false));
+            lauaRepository.save(new RestoraniLaud(4, 2, 660, 190, "veranda", true, false, false));
 
-            lauaRepository.save(new RestoraniLaud(5, 2, 64, 30, true));
-            lauaRepository.save(new RestoraniLaud(6, 4, 228, 30, false));
-            lauaRepository.save(new RestoraniLaud(7, 2, 397, 30, false));
-            
-        
-            lauaRepository.save(new RestoraniLaud(8, 2, 50, 150, true));
-            lauaRepository.save(new RestoraniLaud(9, 4, 200, 150, false));
-            
-            
-            lauaRepository.save(new RestoraniLaud(10, 2, 350, 150, false));
-    
+            // Peamine saal
+            lauaRepository.save(new RestoraniLaud(5, 2, 64, 30, "saal", false, true, false));
+            lauaRepository.save(new RestoraniLaud(6, 4, 228, 30, "saal", false, true, false));
+            lauaRepository.save(new RestoraniLaud(7, 2, 397, 30, "saal", false, true, false));
+
+            lauaRepository.save(new RestoraniLaud(8, 2, 64, 150, "saal", true, false, false));
+            lauaRepository.save(new RestoraniLaud(9, 4, 228, 150, "saal", false, false, false));
+            lauaRepository.save(new RestoraniLaud(10, 2, 397, 150, "saal", false, false, false));
+
+            lauaRepository.save(new RestoraniLaud(11, 6, 64, 270, "saal", true, false, false));
+            lauaRepository.save(new RestoraniLaud(12, 4, 228, 270, "saal", false, false, false));
+            lauaRepository.save(new RestoraniLaud(13, 2, 397, 270, "saal", false, false, false));
+
+            lauaRepository.save(new RestoraniLaud(14, 6, 64, 390, "saal", true, false, true));
+            lauaRepository.save(new RestoraniLaud(15, 4, 228, 390, "saal", false, false, true));
+            lauaRepository.save(new RestoraniLaud(16, 2, 397, 390, "saal", false, false, false));
+
+            lauaRepository.save(new RestoraniLaud(17, 4, 228, 510, "saal", false, false, true));
+            lauaRepository.save(new RestoraniLaud(18, 2, 397, 510, "saal", false, false, true));
+
+            // Privaatne ruum
+            lauaRepository.save(new RestoraniLaud(19, 10, 607, 440, "privaatne", false, false, false));
         }
     }
 
     public List<RestoraniLaud> saaLauadSuvaliseBroneeringuga() {
-    List<RestoraniLaud> lauad = lauaRepository.findAll();
-    Random random = new Random();
-    for (RestoraniLaud laud : lauad) {
-        laud.setOnBroneeritud(random.nextBoolean());
+        List<RestoraniLaud> lauad = lauaRepository.findAll();
+        Random random = new Random();
+        for (RestoraniLaud laud : lauad) {
+            laud.setOnBroneeritud(random.nextBoolean());
+        }
+        lauaRepository.saveAll(lauad);
+        return lauad;
     }
-    lauaRepository.saveAll(lauad); 
-    return lauad;
-}
 
     public RestoraniLaud arvutaParimLaud(KasutajaEelistused eelistused) {
         return lauaRepository.findAll().stream()
-        .filter(l -> !l.isOnBroneeritud())
-        .filter(l -> l.getKohtadeArv() >= eelistused.getInimesteArv())
-        .sorted((l1, l2) -> {
-            int skoor1 = (l1.isAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
-            int skoor2 = (l2.isAknaJuures() == eelistused.isAknaAll()) ? 10 : 0;
-            return Integer.compare(skoor2, skoor1);
-        })
-        .findFirst()
-        .orElse(null);
+                .filter(l -> !l.isOnBroneeritud())
+                .filter(l -> l.getKohtadeArv() >= eelistused.getInimesteArv())
+                .filter(l -> l.getAsukoht().equalsIgnoreCase(eelistused.getAsukoht()))
+                .sorted((l1, l2) -> {
+                    int skoor1 = arvutaSkoor(l1, eelistused);
+                    int skoor2 = arvutaSkoor(l2, eelistused);
+
+                    if (skoor1 != skoor2) {
+                        return Integer.compare(skoor2, skoor1);
+                    }
+
+                    return Integer.compare(l1.getKohtadeArv(), l2.getKohtadeArv());
+                })
+                .findFirst()
+                .orElse(null);
+    }
+
+    private int arvutaSkoor(RestoraniLaud laud, KasutajaEelistused eelistused) {
+        int skoor = 0;
+        if (laud.getAsukoht().equals("privaatne")) {
+            return 0;
+        }
+        if (eelistused.isAknaAll() && laud.isAknaJuures()) {
+            skoor += 10;
+        }
+        if (eelistused.isVaikneNurk() && laud.isVaiksesNurgas()) {
+            skoor += 10;
+        }
+        if (eelistused.isManguNurk() && laud.isManguNurgas()) {
+            skoor += 10;
+        }
+        return skoor;
     }
 }

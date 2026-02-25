@@ -17,17 +17,23 @@ public class RestoraniLaud {
     private int x;
     private int y;
     private boolean onBroneeritud;
+    private String asukoht;
     private boolean aknaJuures;
+    private boolean vaiksesNurgas;
+    private boolean manguNurgas;
 
     public RestoraniLaud() {}
 
-    public RestoraniLaud(int lauaNumber, int kohtadeArv, int x, int y, boolean aknaJuures) {
+    public RestoraniLaud(int lauaNumber, int kohtadeArv, int x, int y, String asukoht, boolean aknaJuures, boolean vaiksesNurgas, boolean manguNurgas) {
+        this.onBroneeritud = false;
         this.lauaNumber = lauaNumber;
         this.kohtadeArv = kohtadeArv;
         this.x = x;
         this.y = y;
-        this.onBroneeritud = false;
+        this.asukoht = asukoht;
         this.aknaJuures = aknaJuures;
+        this.vaiksesNurgas = vaiksesNurgas;
+        this.manguNurgas = manguNurgas;
     } 
 
     public Long getId() {
@@ -85,5 +91,31 @@ public class RestoraniLaud {
     public void setAknaJuures(boolean aknaJuures) {
         this.aknaJuures = aknaJuures;
     }
+
+    public boolean isVaiksesNurgas() {
+        return vaiksesNurgas;
+    }
+
+    public void setVaiksesNurgas(boolean vaiksesNurgas) {
+        this.vaiksesNurgas = vaiksesNurgas;
+    }
+
+    public boolean isManguNurgas() {
+        return manguNurgas;
+    }
+
+    public void setManguNurgas(boolean manguNurgas) {
+        this.manguNurgas = manguNurgas;
+    }
+
+    public String getAsukoht() {
+        return asukoht;
+    }
+
+    public void setAsukoht(String asukoht) {
+        this.asukoht = asukoht;
+    }
+
+    
 
 }

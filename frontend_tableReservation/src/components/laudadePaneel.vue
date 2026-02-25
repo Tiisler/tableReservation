@@ -59,7 +59,7 @@ svg {
     max-width: 600px;
     height: auto;
     display: block;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 10px;
 }
 
@@ -130,7 +130,7 @@ rect.valitud.soovitus {
 
 .sein {
     stroke: black;
-    stroke-width: 2;
+    stroke-width: 1;
 }
 
 .aken {
