@@ -1,12 +1,14 @@
 package com.example.backend_tableReservation.controller;
 
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend_tableReservation.model.KasutajaEelistused;
@@ -25,21 +27,15 @@ public class LauaController {
     }
 
     @GetMapping
-    public List<RestoraniLaud> saaLauad() {
-        return lauaTeenus.saaLauad();
-    }
-
-    @GetMapping("/genereeri-algseis")
-    public List<RestoraniLaud> genereeriAlgseis() {
-        return lauaTeenus.saaLauadSuvaliseBroneeringuga();
+    public List<RestoraniLaud> saaLauad(@RequestParam String kuupaev, @RequestParam String kellaaeg) {
+        return lauaTeenus.saaLauadAjaPohjal(kuupaev, kellaaeg);
     }
 
     @PostMapping("/soovitus")
-    public RestoraniLaud saaSoovitus(@RequestBody KasutajaEelistused eelistused) {
-        if (eelistused.isUuendaBroneeringuid()) {
-            lauaTeenus.saaLauadSuvaliseBroneeringuga();
-        }
-        return lauaTeenus.arvutaParimLaud(eelistused);
+    public ResponseEntity<RestoraniLaud> saaSoovitus(@RequestBody KasutajaEelistused eelistused) {
+        List<RestoraniLaud> lauad = lauaTeenus.saaLauadAjaPohjal(eelistused.getKuupaev(), eelistused.getKellaaeg());
+        RestoraniLaud laud = lauaTeenus.arvutaParimLaud(lauad, eelistused);
+        return ResponseEntity.ok(laud);
     }
 
 }

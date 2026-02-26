@@ -8,11 +8,16 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     const soovitatudLaud = ref(null)
     const valitudLauaMiinused = ref([])
     const valitudLauaPlussid = ref([])
+    const viimasedEelistused = ref({
+        kuupaev: new Date().toISOString().split('T')[0],
+        kellaaeg: `${String(new Date().getHours() + 1).padStart(2, '0')}:00`,
+        asukoht: 'saal',
+        inimesteArv: 1,
+        aknaAll: false,
+        vaikneNurk: false,
+        manguNurk: false
+    });
 
-    const laadiLauad = async () => {
-        const response = await fetch('http://localhost:8080/api/lauad')
-        lauad.value = await response.json()
-    }
 
     const laualeVajutus = (laud) => {
         if (!laud.onBroneeritud) {
@@ -21,28 +26,44 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     };
 
     const algseis = async (algKuupaev, algKell) => {
+        if (!algKuupaev || !algKell) {
+            console.warn("Algseis: Kuupäev või kell puudub!");
+            return;
+        }
+
         const aeg = `${algKuupaev} ${algKell}`;
         viimaneAeg.value = aeg;
-        const response = await fetch('http://localhost:8080/api/lauad/genereeri-algseis');
-        lauad.value = await response.json();
+        await laadiLauad(algKuupaev, algKell);
     }
 
+    const laadiLauad = async (kuupaev, kellaaeg) => {
+        const url = `http://localhost:8080/api/lauad?kuupaev=${kuupaev}&kellaaeg=${kellaaeg}`;
+        const response = await fetch(url);
+        const andmed = await response.json();
+        lauad.value = andmed;
+    }
+
+
     const saadaEelistused = async (eelistused) => {
-        const praeguneAeg = `${eelistused.kuupaev} ${eelistused.kellaaeg}`;
-        const aegMuutus = praeguneAeg !== viimaneAeg.value;
+        viimasedEelistused.value = eelistused;
         try {
             const response = await fetch('http://localhost:8080/api/lauad/soovitus', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...eelistused, uuendaBroneeringuid: aegMuutus })
+                body: JSON.stringify(eelistused)
             });
-            const soovitus = await response.json();
+
+            let soovitus = null;
+            const text = await response.text();
+            if (text) {
+                soovitus = JSON.parse(text);
+            }
             soovitatudLaud.value = soovitus;
             valitudLaud.value = soovitus;
-            viimaneAeg.value = praeguneAeg;
-            await laadiLauad();
+
+            await laadiLauad(eelistused.kuupaev, eelistused.kellaaeg);
         } catch (error) {
-            console.error("Viga soovituse leidmisel:", error);
+            console.error("Viga:", error);
         }
     }
 
@@ -52,6 +73,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
         valitudLauaMiinused,
         valitudLauaPlussid,
         soovitatudLaud,
+        viimasedEelistused,
         laadiLauad,
         laualeVajutus,
         saadaEelistused,

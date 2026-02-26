@@ -57,18 +57,19 @@ public class LauaTeenus {
         }
     }
 
-    public List<RestoraniLaud> saaLauadSuvaliseBroneeringuga() {
+    // Kasutasin selle meetodi loomiseks AI abi, sest minu esialgne lahendus ei töötanud õigesti ja ma ei saanud aru põhjusest.
+    public List<RestoraniLaud> saaLauadAjaPohjal(String kuupaev, String kellaaeg) {
         List<RestoraniLaud> lauad = lauaRepository.findAll();
-        Random random = new Random();
+        long seed = (kuupaev + kellaaeg).hashCode();
+        Random juhuslikkus = new Random(seed);
         for (RestoraniLaud laud : lauad) {
-            laud.setOnBroneeritud(random.nextBoolean());
+            laud.setOnBroneeritud(juhuslikkus.nextFloat() < 0.4);
         }
-        lauaRepository.saveAll(lauad);
         return lauad;
     }
 
-    public RestoraniLaud arvutaParimLaud(KasutajaEelistused eelistused) {
-        return lauaRepository.findAll().stream()
+    public RestoraniLaud arvutaParimLaud(List<RestoraniLaud> lauad, KasutajaEelistused eelistused) {
+        return lauad.stream()
                 .filter(l -> !l.isOnBroneeritud())
                 .filter(l -> l.getKohtadeArv() >= eelistused.getInimesteArv())
                 .filter(l -> l.getAsukoht().equalsIgnoreCase(eelistused.getAsukoht()))
