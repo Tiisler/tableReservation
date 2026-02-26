@@ -18,6 +18,10 @@ public class LauaTeenus {
         this.lauaRepository = lauaRepository;
     }
 
+    public List<RestoraniLaud> saaLauad() {
+        return lauaRepository.findAll();
+    }
+
     @PostConstruct
     public void lisaAlgandmed() {
         if (lauaRepository.count() == 0) {

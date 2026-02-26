@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useLaudadeStore } from '../stores/laudadeStore.js'
 
 const store = useLaudadeStore()
@@ -11,6 +11,15 @@ const inimesteArv = ref(1);
 const aknaAll = ref(false);
 const vaikneNurk = ref(false);
 const mangunurgaLahedal = ref(false);
+
+onMounted(() => {
+    const praeguneAeg = new Date();
+    kuupaev.value = praeguneAeg.toISOString().split('T')[0];
+    const tunnid = praeguneAeg.getHours() + 1;
+    const kellaajaString = `${String(tunnid).padStart(2, '0')}:00`;
+    kellaaeg.value = kellaajaString;
+    store.algseis(kuupaev.value, kellaaeg.value);
+});
 
 function saadaEelistused() {
     store.saadaEelistused({

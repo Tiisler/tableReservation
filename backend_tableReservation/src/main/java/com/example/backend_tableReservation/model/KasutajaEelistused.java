@@ -8,6 +8,7 @@ public class KasutajaEelistused {
     private int inimesteArv;
     private String kuupaev;
     private String kellaaeg;
+    private boolean uuendaBroneeringuid;
 
 
     public boolean isAknaAll() {
@@ -64,5 +65,13 @@ public class KasutajaEelistused {
 
     public void setAsukoht(String asukoht) {
         this.asukoht = asukoht;
+    }
+
+    public boolean isUuendaBroneeringuid() {
+        return uuendaBroneeringuid;
+    }
+
+    public void setUuendaBroneeringuid(boolean uuendaBroneeringuid) {
+        this.uuendaBroneeringuid = uuendaBroneeringuid;
     }
 }

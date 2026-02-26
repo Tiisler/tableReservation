@@ -26,13 +26,20 @@ public class LauaController {
 
     @GetMapping
     public List<RestoraniLaud> saaLauad() {
+        return lauaTeenus.saaLauad();
+    }
+
+    @GetMapping("/genereeri-algseis")
+    public List<RestoraniLaud> genereeriAlgseis() {
         return lauaTeenus.saaLauadSuvaliseBroneeringuga();
     }
 
     @PostMapping("/soovitus")
     public RestoraniLaud saaSoovitus(@RequestBody KasutajaEelistused eelistused) {
+        if (eelistused.isUuendaBroneeringuid()) {
+            lauaTeenus.saaLauadSuvaliseBroneeringuga();
+        }
         return lauaTeenus.arvutaParimLaud(eelistused);
     }
 
 }
-
