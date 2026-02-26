@@ -43,6 +43,7 @@ rect {
     height: 40px;
     rx: 8;
     ry: 8;
+    filter: drop-shadow(1.5px 1.5px 1px rgb(24, 23, 23));
 }
 
 text {
@@ -61,6 +62,8 @@ svg {
     display: block;
     border: 1px solid black;
     border-radius: 10px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .broneeritud {
@@ -76,6 +79,7 @@ svg {
     fill: rgb(162, 163, 162);
     cursor: pointer;
 }
+
 
 .hiirSaadaval {
     cursor: pointer;
@@ -142,7 +146,7 @@ rect.valitud.soovitus {
 
 .mangunurk {
     font-size: 15px;
-    fill: #dbc0e2;
+    fill: #367014;
     text-anchor: middle;
     font-weight: bold;
 }

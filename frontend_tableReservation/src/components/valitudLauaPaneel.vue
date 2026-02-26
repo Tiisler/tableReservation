@@ -23,13 +23,13 @@ const plussidJaMiinused = computed(() => {
     const miinused = [];
 
     if (eelmised.aknaAll) {
-        laud.aknaJuures ? plussid.push("Akna all") : miinused.push("Ei ole akna all");
+        laud.aknaJuures ? plussid.push("Akna all") : miinused.push("Pole akna juures");
     }
     if (eelmised.vaikneNurk) {
-        laud.vaiksesNurgas ? plussid.push("Vaikne nurk") : miinused.push("Ei ole vaikses nurgas");
+        laud.vaiksesNurgas ? plussid.push("Vaikne nurk") : miinused.push("Pole vaikses nurgas");
     }
     if (eelmised.manguNurk) {
-        laud.manguNurgas ? plussid.push("Mängunurga lähedal") : miinused.push("Kaugemal mängunurgast");
+        laud.manguNurgas ? plussid.push("Mängunurga lähedal") : miinused.push("Pole mängunurga lähedal");
     }
 
     return { plussid, miinused };
@@ -74,6 +74,11 @@ const plussidJaMiinused = computed(() => {
     font-weight: bold;
     padding: 0;
     margin-bottom: 20px;
+    transition: 200ms;
+}
+
+.tagasi-nupp:hover {
+    color: #333;
 }
 
 .sisu h2 { 
@@ -119,11 +124,19 @@ li {
 .broneeri-nupp {
     background-color: #4CAF50;
     color: white;
-    border: none;
+    border: 1px solid #39923c;
     padding: 12px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     margin-top: auto;
+    box-shadow: 1px 1.5px 2px rgba(0, 0, 0, 0.1), 1px 1.5px 3px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
 }
+
+.broneeri-nupp:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
 </style>

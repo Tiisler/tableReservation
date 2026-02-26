@@ -9,6 +9,23 @@ const store = useLaudadeStore();
 </script>
 
 <template>
+  <div class="header">
+    <div class="vasak">
+      <div class="logoJaTekst">
+        <img width="110" height="110"
+          src="https://www.muraldecal.com/en/img/vesp011-png/folder/products-detalle-png/stickers-italy-coat-of-arms.png"
+          alt="">
+        <h1 id="pealkiri">Restoran <br>
+          <hr id="pealkirjaJoon">Italia
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="tervitus">
+    <h2 class="pealkiri">Tere tulemast Restorani Italia!</h2>
+    <p class="tekst">Broneerige laud meie hubases restoranis ja nautige autentset Itaalia kööki. Hoolitseme, et teie külastus oleks meeldejääv!</p>
+    <hr class="tervituseJoon">
+  </div>
   <div class="suurKast">
     <HomeView></HomeView>
     <ValitudLauaPaneel v-if="store.valitudLaud" />
@@ -16,12 +33,79 @@ const store = useLaudadeStore();
   </div>
 </template>
 
+
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: hsl(0, 4%, 95%);
+}
+</style>
+
+
 <style scoped>
+
+img {
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+.logoJaTekst {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.tervitus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.tervituseJoon {
+  width: 100%; 
+  max-width: 600px;
+  min-width: 320px;
+  border: 0;
+  height: 3px;
+  background-color: #4CAF50;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  margin: 12px 0 30px 0;
+  border-radius: 2px;
+}
+
+.pealkiri {
+  color: #4CAF50;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-shadow: 2.5px 2.5px 1px rgba(0, 0, 0, 0.027);
+}
+
+.tekst {
+  color: #333;
+  font-size: 1.15rem;
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 0;
+  text-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.041);
+  margin-bottom: 30px;
+}
+
 .suurKast {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; 
-  align-items: flex-start; 
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
   gap: 20px;
   padding: 40px;
@@ -38,10 +122,11 @@ const store = useLaudadeStore();
   border-radius: 10px;
   border: black 1px solid;
   box-sizing: border-box;
-  align-self: stretch; 
+  align-self: stretch;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-:deep(.HomeViewKonteiner) { 
+:deep(.HomeViewKonteiner) {
   align-self: flex-start;
 }
 
@@ -62,5 +147,33 @@ const store = useLaudadeStore();
   :deep(.HomeViewKonteiner) {
     align-self: center;
   }
+}
+
+.header {
+  display: flex;
+  background-color: #4CAF50;
+  padding-left: 1.5vh;
+  padding-right: 1.5vh;
+  align-items: center;
+  border-bottom: 2px solid green;
+  box-shadow: 2px 1px 4px gray;
+}
+
+#pealkirjaJoon {
+  margin: none;
+  border: 1px solid white;
+}
+
+@media (min-width: 1037px) {
+
+  .header {
+    margin-bottom: 20px;
+  }
+}
+
+#pealkiri {
+  color: white;
+  font-weight: bold;
+  font-size: 1.75rem;
 }
 </style>

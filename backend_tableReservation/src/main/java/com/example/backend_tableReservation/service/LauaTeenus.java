@@ -28,16 +28,16 @@ public class LauaTeenus {
 
             // Veranda
             lauaRepository.save(new RestoraniLaud(1, 8, 550, 70, "veranda", true, false, false));
-            lauaRepository.save(new RestoraniLaud(2, 8, 660, 70, "veranda", true, false, false));
-            lauaRepository.save(new RestoraniLaud(3, 8, 550, 190, "veranda", false, false, false));
+            lauaRepository.save(new RestoraniLaud(2, 6, 660, 70, "veranda", true, false, false));
+            lauaRepository.save(new RestoraniLaud(3, 4, 550, 190, "veranda", false, false, false));
             lauaRepository.save(new RestoraniLaud(4, 2, 660, 190, "veranda", true, false, false));
 
             // Peamine saal
             lauaRepository.save(new RestoraniLaud(5, 2, 64, 30, "saal", false, true, false));
             lauaRepository.save(new RestoraniLaud(6, 4, 228, 30, "saal", false, true, false));
-            lauaRepository.save(new RestoraniLaud(7, 2, 397, 30, "saal", false, true, false));
+            lauaRepository.save(new RestoraniLaud(7, 6, 397, 30, "saal", false, true, false));
 
-            lauaRepository.save(new RestoraniLaud(8, 2, 64, 150, "saal", true, false, false));
+            lauaRepository.save(new RestoraniLaud(8, 8, 64, 150, "saal", true, false, false));
             lauaRepository.save(new RestoraniLaud(9, 4, 228, 150, "saal", false, false, false));
             lauaRepository.save(new RestoraniLaud(10, 2, 397, 150, "saal", false, false, false));
 
@@ -45,15 +45,15 @@ public class LauaTeenus {
             lauaRepository.save(new RestoraniLaud(12, 4, 228, 270, "saal", false, false, false));
             lauaRepository.save(new RestoraniLaud(13, 2, 397, 270, "saal", false, false, false));
 
-            lauaRepository.save(new RestoraniLaud(14, 6, 64, 390, "saal", true, false, true));
-            lauaRepository.save(new RestoraniLaud(15, 4, 228, 390, "saal", false, false, true));
+            lauaRepository.save(new RestoraniLaud(14, 4, 64, 390, "saal", true, false, true));
+            lauaRepository.save(new RestoraniLaud(15, 6, 228, 390, "saal", false, false, true));
             lauaRepository.save(new RestoraniLaud(16, 2, 397, 390, "saal", false, false, false));
 
             lauaRepository.save(new RestoraniLaud(17, 4, 228, 510, "saal", false, false, true));
-            lauaRepository.save(new RestoraniLaud(18, 2, 397, 510, "saal", false, false, true));
+            lauaRepository.save(new RestoraniLaud(18, 6, 397, 510, "saal", false, false, true));
 
             // Privaatne ruum
-            lauaRepository.save(new RestoraniLaud(19, 10, 607, 440, "privaatne", false, false, false));
+            lauaRepository.save(new RestoraniLaud(19, 20, 607, 440, "privaatne", false, false, false));
         }
     }
 
