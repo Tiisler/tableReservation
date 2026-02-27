@@ -9,7 +9,7 @@ const store = useLaudadeStore()
 <template>
     <svg viewBox="0 0 750 600" preserveAspectRatio="xMidYMid meet">
         <text x="625" y="30" class="tsooniSilt">VERANDA</text>
-        <text x="625" y="330" class="tsooniSilt">PRIVAATRUUM</text>
+        <text x="625" y="330" class="tsooniSilt">PRIVAATNE RUUM</text>
         <text x="75" y="575" class="mangunurk">MÄNGUNURK</text>
 
         <line x1="0" y1="120" x2="0" y2="500" class="aken" />
@@ -63,7 +63,7 @@ svg {
     border: 1px solid black;
     border-radius: 10px;
     background-color: #f7f7f7;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), 2px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .broneeritud {
@@ -146,7 +146,7 @@ rect.valitud.soovitus {
 
 .mangunurk {
     font-size: 15px;
-    fill: #367014;
+    fill: #36701493;
     text-anchor: middle;
     font-weight: bold;
 }

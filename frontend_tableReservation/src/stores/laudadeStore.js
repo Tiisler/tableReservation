@@ -47,7 +47,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     const saadaEelistused = async (eelistused) => {
         viimasedEelistused.value = eelistused;
         try {
-            const response = await fetch('http://localhost:8080/api/lauad/soovitus', {
+            const response = await fetch(`http://localhost:8080/api/lauad/soovitus`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(eelistused)
@@ -57,6 +57,9 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
             const text = await response.text();
             if (text) {
                 soovitus = JSON.parse(text);
+            }
+            if (soovitus===null) {
+                alert(`Valitud ajaks pole sellist lauda saadaval. Vabandame!`);
             }
             soovitatudLaud.value = soovitus;
             valitudLaud.value = soovitus;

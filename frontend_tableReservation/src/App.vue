@@ -68,6 +68,7 @@ img:hover {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  animation: sisseSujumine 0.8s ease-out forwards;
 }
 
 .tervituseJoon {
@@ -88,8 +89,10 @@ img:hover {
   font-weight: bold;
   margin-bottom: 8px;
   letter-spacing: 1px;
-  text-shadow: 2.5px 2.5px 1px rgba(0, 0, 0, 0.027);
+  text-shadow: 2px 2px 1px rgba(44, 43, 43, 0.014);
+  margin-top: 40px;
 }
+
 
 .tekst {
   color: #333;
@@ -97,7 +100,7 @@ img:hover {
   text-align: center;
   max-width: 600px;
   margin-bottom: 0;
-  text-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.041);
+  text-shadow: 1.5px 1.5px 1px rgba(0, 0, 0, 0.021);
   margin-bottom: 30px;
 }
 
@@ -111,6 +114,8 @@ img:hover {
   padding: 40px;
   width: 100%;
   box-sizing: border-box;
+  animation: sisseSujumine 0.8s ease-out 0.3s forwards;
+  opacity: 0;
 }
 
 :deep(.paneel) {
@@ -123,7 +128,7 @@ img:hover {
   border: black 1px solid;
   box-sizing: border-box;
   align-self: stretch;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), 2px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 :deep(.HomeViewKonteiner) {
@@ -162,6 +167,7 @@ img:hover {
 #pealkirjaJoon {
   margin: none;
   border: 1px solid white;
+  box-shadow: 2.5px 2.5px 1px rgba(0, 0, 0, 0.26);
 }
 
 @media (min-width: 1037px) {
@@ -175,5 +181,17 @@ img:hover {
   color: white;
   font-weight: bold;
   font-size: 1.75rem;
+  text-shadow: 2.5px 2.5px 1px rgba(0, 0, 0, 0.26);
+}
+
+@keyframes sisseSujumine {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

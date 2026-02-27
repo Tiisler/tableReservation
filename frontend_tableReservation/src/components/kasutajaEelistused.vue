@@ -35,7 +35,8 @@ function saadaEelistused() {
             </div>
             <div class="vormiRida">
                 <label for="kylalisteArv"><b>Külaliste arv:</b></label>
-                <input id="kylalisteArv" type="number" min="1" max="20" v-model="store.viimasedEelistused.inimesteArv" required />
+                <input id="kylalisteArv" type="number" min="1" max="20" v-model="store.viimasedEelistused.inimesteArv"
+                    required />
             </div>
             <div class="vormiRida">
                 <label for="koht"><b>Koha tüüp:</b></label>
@@ -68,8 +69,6 @@ function saadaEelistused() {
 </template>
 
 <style scoped>
-
-
 .eelistusteVorm {
     display: flex;
     flex-direction: column;
@@ -89,6 +88,7 @@ function saadaEelistused() {
     box-shadow: 1px 1.5px 2px rgba(0, 0, 0, 0.1), 1px 1.5px 3px rgba(0, 0, 0, 0.1);
     transition: 200ms;
 }
+
 .nupp:hover {
     background-color: #45a049;
     transform: translateY(-2px);
@@ -113,6 +113,12 @@ select {
     border: 1px solid #bbb;
     font-size: 12px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+input:focus,
+select:focus {
+    border: 1px solid #000000;
+    outline: none;
 }
 
 input[type="checkbox"] {
