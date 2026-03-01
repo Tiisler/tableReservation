@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useLaudadeStore } from '../stores/laudadeStore.js'
 import { useKeelteStore } from '../stores/keelteStore.js'
 
@@ -14,6 +14,10 @@ const aknaAll = ref(false);
 const vaikneNurk = ref(false);
 const mangunurgaLahedal = ref(false);
 
+const minimaalneKuupaev = computed(() => {
+    return new Date().toISOString().split('T')[0];
+});
+
 onMounted(() => {
     store.algseis(store.viimasedEelistused.kuupaev, store.viimasedEelistused.kellaaeg);
 });
@@ -22,6 +26,7 @@ function saadaEelistused() {
     store.saadaEelistused(store.viimasedEelistused);
 }
 
+
 </script>
 
 <template>
@@ -29,7 +34,7 @@ function saadaEelistused() {
         <form class="eelistusteVorm" @submit.prevent="saadaEelistused">
             <div class="vormiRida">
                 <label for="kuupaev"><b>{{ keeled.tekst.kuupaev }}</b></label>
-                <input id="kuupaev" type="date" v-model="store.viimasedEelistused.kuupaev" required />
+                <input id="kuupaev" type="date" v-model="store.viimasedEelistused.kuupaev" :min="minimaalneKuupaev" required />
             </div>
             <div class="vormiRida">
                 <label for="kellaaeg"><b>{{ keeled.tekst.kellaaeg }}</b></label>

@@ -11,7 +11,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     const valitudLauaPlussid = ref([])
     const viimasedEelistused = ref({
         kuupaev: new Date().toISOString().split('T')[0],
-        kellaaeg: `${String(new Date().getHours() + 1).padStart(2, '0')}:00`,
+        kellaaeg: `${String(new Date().getHours()).padStart(2, '0')}:00`,
         asukoht: 'saal',
         inimesteArv: 1,
         aknaAll: false,

@@ -138,6 +138,7 @@ img:hover {
   letter-spacing: 1px;
   text-shadow: 2px 2px 1px rgba(44, 43, 43, 0.014);
   margin-top: 40px;
+  text-align: center;
 }
 
 
