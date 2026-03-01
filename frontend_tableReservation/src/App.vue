@@ -3,8 +3,10 @@ import KasutajaEelistused from './components/kasutajaEelistused.vue';
 import ValitudLauaPaneel from './components/valitudLauaPaneel.vue';
 import HomeView from './views/HomeView.vue';
 import { useLaudadeStore } from './stores/laudadeStore.js';
+import { useKeelteStore } from './stores/keelteStore.js';
 
 const store = useLaudadeStore();
+const keeled = useKeelteStore();
 
 </script>
 
@@ -13,17 +15,27 @@ const store = useLaudadeStore();
     <div class="vasak">
       <div class="logoJaTekst">
         <img width="110" height="110"
-          src="https://www.muraldecal.com/en/img/vesp011-png/folder/products-detalle-png/stickers-italy-coat-of-arms.png"
+          src="/italia_logo.png"
           alt="">
         <h1 id="pealkiri">Restoran <br>
           <hr id="pealkirjaJoon">Italia
         </h1>
       </div>
     </div>
+
+    <div class="keelevalik">
+      <div class="keeleKonteiner">
+        <select v-model="keeled.keel" class="keeleValik">
+          <option value="ee">🇪🇪</option>
+          <option value="en">🇬🇧</option>
+        </select>
+      </div>
+    </div>
+
   </div>
   <div class="tervitus">
-    <h2 class="pealkiri">Tere tulemast Restorani Italia!</h2>
-    <p class="tekst">Broneerige laud meie hubases restoranis ja nautige autentset Itaalia kööki. Hoolitseme, et teie külastus oleks meeldejääv!</p>
+    <h2 class="pealkiri">{{ keeled.tekst.tervitus }}</h2>
+    <p class="tekst">{{ keeled.tekst.kirjeldus }}</p>
     <hr class="tervituseJoon">
   </div>
   <div class="suurKast">
@@ -46,6 +58,41 @@ body {
 
 
 <style scoped>
+.keelevalik {
+  display: flex;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+.keeleKonteiner {
+  margin-left: auto;
+  padding-right: 20px;
+}
+
+.keeleValik {
+  background-color: #4CAF50;
+  border: none;
+  font-family: 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.keeleValik:hover {
+  transform: translateY(-2px);
+}
+
+.keeleValik option {
+  background-color: white;
+  font-family: 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1.1rem;
+}
+
 
 img {
   transition: transform 0.3s ease;
@@ -72,13 +119,13 @@ img:hover {
 }
 
 .tervituseJoon {
-  width: 100%; 
+  width: 100%;
   max-width: 600px;
   min-width: 320px;
   border: 0;
   height: 3px;
   background-color: #4CAF50;
-  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   margin: 12px 0 30px 0;
   border-radius: 2px;
 }
@@ -189,6 +236,7 @@ img:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

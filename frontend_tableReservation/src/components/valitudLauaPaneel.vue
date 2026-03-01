@@ -1,15 +1,17 @@
 <script setup>
 import { computed } from 'vue';
 import { useLaudadeStore } from '@/stores/laudadeStore';
+import { useKeelteStore } from '@/stores/keelteStore';
 
 const store = useLaudadeStore();
+const keeled = useKeelteStore();
 
 const tagasi = () => {
     store.valitudLaud = null;
 };
 
 const broneeri = () => {
-    alert(`Laud nr ${store.valitudLaud.lauaNumber} on edukalt broneeritud!`);
+    alert(`${keeled.tekst.lauaNr} ${store.valitudLaud.lauaNumber} ${keeled.tekst.broneeri}!`);
     store.valitudLaud = null;
 };
 
@@ -23,13 +25,13 @@ const plussidJaMiinused = computed(() => {
     const miinused = [];
 
     if (eelmised.aknaAll) {
-        laud.aknaJuures ? plussid.push("Akna all") : miinused.push("Pole akna juures");
+        laud.aknaJuures ? plussid.push(keeled.tekst.aknaAll) : miinused.push(keeled.tekst.poleAknaJuures);
     }
     if (eelmised.vaikneNurk) {
-        laud.vaiksesNurgas ? plussid.push("Vaikne nurk") : miinused.push("Pole vaikses nurgas");
+        laud.vaiksesNurgas ? plussid.push(keeled.tekst.vaikneNurk) : miinused.push(keeled.tekst.poleVaikses);
     }
-    if (eelmised.manguNurk) {
-        laud.manguNurgas ? plussid.push("Mängunurga lähedal") : miinused.push("Pole mängunurga lähedal");
+    if (eelmised.mangunurgaLahedal) {
+        laud.manguNurgas ? plussid.push(keeled.tekst.mangunurgaLahedal) : miinused.push(keeled.tekst.poleMangunurgas);
     }
 
     return { plussid, miinused };
@@ -38,28 +40,28 @@ const plussidJaMiinused = computed(() => {
 
 <template>
     <div class="paneel info-paneel">
-        <button class="tagasi-nupp" @click="tagasi">← Tagasi</button>
+        <button class="tagasi-nupp" @click="tagasi">← {{ keeled.tekst.tagasi }}</button>
         
         <div class="sisu">
-            <h2>Laud nr {{ store.valitudLaud.lauaNumber }}</h2>
-            <p class="kohti">Kohti: <strong>{{ store.valitudLaud.kohtadeArv }}</strong></p>
+            <h2> {{ keeled.tekst.lauaNr }} {{ store.valitudLaud.lauaNumber }}</h2>
+            <p class="kohti">{{ keeled.tekst.kohti }} <strong>{{ store.valitudLaud.kohtadeArv }}</strong></p>
             
             <div v-if="plussidJaMiinused.plussid.length > 0" class="listi-grupp">
-                <h4>Plussid:</h4>
+                <h4>{{ keeled.tekst.plussid }}</h4>
                 <ul>
                     <li v-for="p in plussidJaMiinused.plussid" :key="p" class="pluss">{{ p }}</li>
                 </ul>
             </div>
 
             <div v-if="plussidJaMiinused.miinused.length > 0" class="listi-grupp">
-                <h4>Miinused:</h4>
+                <h4>{{ keeled.tekst.miinused }}</h4>
                 <ul>
                     <li v-for="m in plussidJaMiinused.miinused" :key="m" class="miinus">{{ m }}</li>
                 </ul>
             </div>
         </div>
 
-        <button class="nupp broneeri-nupp" @click="broneeri">Broneeri</button>
+        <button class="nupp broneeri-nupp" @click="broneeri">{{ keeled.tekst.broneeri }}</button>
     </div>
 </template>
 

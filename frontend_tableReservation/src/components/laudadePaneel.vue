@@ -1,16 +1,18 @@
 <script setup>
 import { useLaudadeStore } from '@/stores/laudadeStore';
+import { useKeelteStore } from '@/stores/keelteStore';
 
 const store = useLaudadeStore()
+const keeled = useKeelteStore()
 
 </script>
 
 
 <template>
     <svg viewBox="0 0 750 600" preserveAspectRatio="xMidYMid meet">
-        <text x="625" y="30" class="tsooniSilt">VERANDA</text>
-        <text x="625" y="330" class="tsooniSilt">PRIVAATNE RUUM</text>
-        <text x="75" y="575" class="mangunurk">MÄNGUNURK</text>
+        <text x="625" y="30" class="tsooniSilt">{{ keeled.tekst.veranda }}</text>
+        <text x="625" y="330" class="tsooniSilt">{{ keeled.tekst.privaatneRuum }}</text>
+        <text x="75" y="575" class="mangunurk">{{ keeled.tekst.mangunurk }}</text>
 
         <line x1="0" y1="120" x2="0" y2="500" class="aken" />
         <line x1="750" y1="320" x2="750" y2="570" class="aken" />

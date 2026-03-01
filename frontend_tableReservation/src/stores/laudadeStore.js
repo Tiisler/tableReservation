@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useKeelteStore } from './keelteStore';
 
 export const useLaudadeStore = defineStore('laudadeStore', () => {
     const lauad = ref([])
@@ -26,10 +27,6 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     };
 
     const algseis = async (algKuupaev, algKell) => {
-        if (!algKuupaev || !algKell) {
-            console.warn("Algseis: Kuupäev või kell puudub!");
-            return;
-        }
 
         const aeg = `${algKuupaev} ${algKell}`;
         viimaneAeg.value = aeg;
@@ -45,6 +42,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
 
 
     const saadaEelistused = async (eelistused) => {
+        const keeled = useKeelteStore();
         viimasedEelistused.value = eelistused;
         try {
             const response = await fetch(`http://localhost:8080/api/lauad/soovitus`, {
@@ -59,7 +57,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
                 soovitus = JSON.parse(text);
             }
             if (soovitus===null) {
-                alert(`Valitud ajaks pole sellist lauda saadaval. Vabandame!`);
+                alert(keeled.tekst.poleLauda);
             }
             soovitatudLaud.value = soovitus;
             valitudLaud.value = soovitus;

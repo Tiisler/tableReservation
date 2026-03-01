@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useLaudadeStore } from '../stores/laudadeStore.js'
+import { useKeelteStore } from '../stores/keelteStore.js'
 
 const store = useLaudadeStore()
+const keeled = useKeelteStore()
 
 const kuupaev = ref('');
 const kellaaeg = ref('');
@@ -26,44 +28,44 @@ function saadaEelistused() {
     <div class="paneel">
         <form class="eelistusteVorm" @submit.prevent="saadaEelistused">
             <div class="vormiRida">
-                <label for="kuupaev"><b>Kuupäev:</b></label>
+                <label for="kuupaev"><b>{{ keeled.tekst.kuupaev }}</b></label>
                 <input id="kuupaev" type="date" v-model="store.viimasedEelistused.kuupaev" required />
             </div>
             <div class="vormiRida">
-                <label for="kellaaeg"><b>Kellaaeg:</b></label>
+                <label for="kellaaeg"><b>{{ keeled.tekst.kellaaeg }}</b></label>
                 <input id="kellaaeg" type="time" v-model="store.viimasedEelistused.kellaaeg" required />
             </div>
             <div class="vormiRida">
-                <label for="kylalisteArv"><b>Külaliste arv:</b></label>
+                <label for="kylalisteArv"><b>{{ keeled.tekst.kylalisteArv }}</b></label>
                 <input id="kylalisteArv" type="number" min="1" max="20" v-model="store.viimasedEelistused.inimesteArv"
                     required />
             </div>
             <div class="vormiRida">
-                <label for="koht"><b>Koha tüüp:</b></label>
+                <label for="koht"><b>{{ keeled.tekst.kohaTyyp }}</b></label>
                 <select id="koht" v-model="store.viimasedEelistused.asukoht">
-                    <option value="saal">Tavaline saal</option>
-                    <option value="veranda">Veranda</option>
-                    <option value="privaatne">Privaatne ruum</option>
+                    <option value="saal">{{ keeled.tekst.tavalineSaal }}</option>
+                    <option value="veranda">{{ keeled.tekst.veranda }}</option>
+                    <option value="privaatne">{{ keeled.tekst.privaatneRuum }}</option>
                 </select>
             </div>
             <div class="vormiRida">
-                <label><b>Eelistused:</b></label>
+                <label><b>{{ keeled.tekst.eelistused }}</b></label>
                 <div class="eelistused-valikud">
                     <label>
                         <input type="checkbox" v-model="store.viimasedEelistused.aknaAll" />
-                        Akna all
+                        {{ keeled.tekst.aknaAll }}
                     </label>
                     <label>
                         <input type="checkbox" v-model="store.viimasedEelistused.vaikneNurk" />
-                        Vaikne nurk
+                        {{ keeled.tekst.vaikneNurk }}
                     </label>
                     <label>
                         <input type="checkbox" v-model="store.viimasedEelistused.manguNurk" />
-                        Mängunurga lähedal
+                        {{ keeled.tekst.mangunurgaLahedal }}
                     </label>
                 </div>
             </div>
-            <button type="submit" class="nupp">Vaata soovitust</button>
+            <button type="submit" class="nupp">{{ keeled.tekst.soovituseNupp }}</button>
         </form>
     </div>
 </template>
