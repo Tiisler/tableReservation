@@ -124,7 +124,8 @@ select {
 
 input:focus,
 select:focus {
-    border: 1px solid #000000;
+    border-color: #000000;
+    box-shadow: 0 0 4px rgba(12, 27, 13, 0.068);
     outline: none;
 }
 

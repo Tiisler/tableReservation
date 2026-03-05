@@ -20,6 +20,7 @@ export const useKeelteStore = defineStore('keeleStore', () => {
             mangunurgaLahedal: 'Mängunurga lähedal',
             soovituseNupp: 'Vaata soovitust',
             broneeri: 'Broneeri',
+            broneeringKinnitatud: 'edukalt broneeritud!',
             lauaNr: 'Laud nr',
             kohti: 'Kohti:',
             tagasi: 'Tagasi',
@@ -29,7 +30,12 @@ export const useKeelteStore = defineStore('keeleStore', () => {
             poleVaikses: 'Pole vaikses nurgas',
             poleMangunurgas: 'Pole mängunurga lähedal',
             mangunurk: 'Mängunurk',
-            poleLauda: 'Valitud ajaks pole sellist lauda saadaval. Vabandame!'
+            poleLauda: 'Valitud ajaks pole sellist lauda saadaval. Vabandame!',
+            nimi: 'Nimi:',
+            email: 'Email:',
+            telefoninumber: 'Telefoninumber:',
+            loplikBroneerimine: 'Broneeri laud',
+            broneerimisPaneel: 'Broneeringu andmed'
         },
         en: {
             tervitus: 'Welcome to Restaurant Italia!',
@@ -45,6 +51,7 @@ export const useKeelteStore = defineStore('keeleStore', () => {
             aknaAll: 'By the window',
             vaikneNurk: 'Quiet corner',
             mangunurgaLahedal: 'Near the play area',
+            broneeringKinnitatud: 'successfully booked!',
             soovituseNupp: 'See recommendation',
             broneeri: 'Book',
             lauaNr: 'Table nr',
@@ -56,7 +63,12 @@ export const useKeelteStore = defineStore('keeleStore', () => {
             poleVaikses: 'Not in a quiet corner',
             poleMangunurgas: 'Not near the play area',
             mangunurk: 'Play area',
-            poleLauda: 'No such tables available for the selected time. We apologize!'
+            poleLauda: 'No such tables available for the selected time. We apologize!',
+            nimi: 'Name:',
+            email: 'Email:',
+            telefoninumber: 'Phone number:',
+            loplikBroneerimine: 'Book table',
+            broneerimisPaneel: 'Booking details'
         
         }
     }

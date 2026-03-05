@@ -7,7 +7,7 @@ import laudadePaneel from '@/components/laudadePaneel.vue';
 const store = useLaudadeStore()
 
 onMounted(() => {
-  store.laadiLauad()
+  store.laadiLauad(store.viimasedEelistused.kuupaev, store.viimasedEelistused.kellaaeg)
 })
 </script>
 

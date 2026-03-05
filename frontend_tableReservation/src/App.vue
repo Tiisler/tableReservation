@@ -1,6 +1,7 @@
 <script setup>
 import KasutajaEelistused from './components/kasutajaEelistused.vue';
 import ValitudLauaPaneel from './components/valitudLauaPaneel.vue';
+import BroneeringuPaneel from './components/BroneeringuPaneel.vue';
 import HomeView from './views/HomeView.vue';
 import { useLaudadeStore } from './stores/laudadeStore.js';
 import { useKeelteStore } from './stores/keelteStore.js';
@@ -40,7 +41,8 @@ const keeled = useKeelteStore();
   </div>
   <div class="suurKast">
     <HomeView></HomeView>
-    <ValitudLauaPaneel v-if="store.valitudLaud" />
+    <BroneeringuPaneel v-if="store.broneerimisPaneel && store.valitudLaud" />
+    <ValitudLauaPaneel v-else-if="store.valitudLaud" />
     <KasutajaEelistused v-else />
   </div>
 </template>
@@ -72,6 +74,7 @@ body {
 
 .keeleValik {
   background-color: #4CAF50;
+  color: white;
   border: none;
   font-family: 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
   padding: 5px 10px;

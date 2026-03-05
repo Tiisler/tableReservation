@@ -17,6 +17,7 @@ public class RestoraniLaud {
     private int x;
     private int y;
     private boolean onBroneeritud;
+    private long broneeringuAeg;
     private String asukoht;
     private boolean aknaJuures;
     private boolean vaiksesNurgas;
@@ -26,6 +27,7 @@ public class RestoraniLaud {
 
     public RestoraniLaud(int lauaNumber, int kohtadeArv, int x, int y, String asukoht, boolean aknaJuures, boolean vaiksesNurgas, boolean manguNurgas) {
         this.onBroneeritud = false;
+        this.broneeringuAeg = 0;
         this.lauaNumber = lauaNumber;
         this.kohtadeArv = kohtadeArv;
         this.x = x;
@@ -66,6 +68,14 @@ public class RestoraniLaud {
 
     public void setOnBroneeritud(boolean onBroneeritud) {
         this.onBroneeritud = onBroneeritud;
+    }
+
+    public long getBroneeringuAeg() {
+        return broneeringuAeg;
+    }
+
+    public void setBroneeringuAeg(long broneeringuAeg) {
+        this.broneeringuAeg = broneeringuAeg;
     }
 
     public int getX() {

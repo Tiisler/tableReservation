@@ -6,6 +6,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     const lauad = ref([])
     const viimaneAeg = ref("");
     const valitudLaud = ref(null)
+    const broneerimisPaneel = ref(false)
     const soovitatudLaud = ref(null)
     const valitudLauaMiinused = ref([])
     const valitudLauaPlussid = ref([])
@@ -68,9 +69,14 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
         }
     }
 
+    const uuendaLauad = async () => {
+        await laadiLauad(viimasedEelistused.value.kuupaev, viimasedEelistused.value.kellaaeg);
+    }
+
     return {
         lauad,
         valitudLaud,
+        broneerimisPaneel,
         valitudLauaMiinused,
         valitudLauaPlussid,
         soovitatudLaud,
@@ -79,5 +85,6 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
         laualeVajutus,
         saadaEelistused,
         algseis,
+        uuendaLauad,
     }
 })

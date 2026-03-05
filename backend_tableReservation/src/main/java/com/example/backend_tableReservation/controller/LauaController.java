@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend_tableReservation.model.KasutajaEelistused;
 import com.example.backend_tableReservation.model.RestoraniLaud;
+import com.example.backend_tableReservation.model.BroneeringuAndmed;
 import com.example.backend_tableReservation.service.LauaTeenus;
 
 @RestController
 @RequestMapping("/api/lauad")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
+@CrossOrigin(origins = { "http://localhost:5173", "http://localhost:5174" })
 public class LauaController {
 
     private final LauaTeenus lauaTeenus;
@@ -36,6 +37,12 @@ public class LauaController {
         List<RestoraniLaud> lauad = lauaTeenus.saaLauadAjaPohjal(eelistused.getKuupaev(), eelistused.getKellaaeg());
         RestoraniLaud laud = lauaTeenus.arvutaParimLaud(lauad, eelistused);
         return ResponseEntity.ok(laud);
+    }
+
+    @PostMapping("/broneeri")
+    public ResponseEntity<RestoraniLaud> broneeriLaud(@RequestBody BroneeringuAndmed broneeringuAndmed) {
+        RestoraniLaud broneeritudLaud = lauaTeenus.broneeriLaud(broneeringuAndmed);
+        return ResponseEntity.ok(broneeritudLaud);
     }
 
 }

@@ -11,8 +11,7 @@ const tagasi = () => {
 };
 
 const broneeri = () => {
-    alert(`${keeled.tekst.lauaNr} ${store.valitudLaud.lauaNumber} ${keeled.tekst.broneeri}!`);
-    store.valitudLaud = null;
+    store.broneerimisPaneel = true;
 };
 
 const plussidJaMiinused = computed(() => {

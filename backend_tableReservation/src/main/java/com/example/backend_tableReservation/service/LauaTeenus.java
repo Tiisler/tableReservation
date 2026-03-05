@@ -2,10 +2,13 @@ package com.example.backend_tableReservation.service;
 
 import com.example.backend_tableReservation.model.KasutajaEelistused;
 import com.example.backend_tableReservation.model.RestoraniLaud;
+import com.example.backend_tableReservation.model.BroneeringuAndmed;
 import com.example.backend_tableReservation.repository.LauaRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 
@@ -29,6 +32,7 @@ public class LauaTeenus {
             // Veranda
             lauaRepository.save(new RestoraniLaud(1, 8, 550, 70, "veranda", true, false, false));
             lauaRepository.save(new RestoraniLaud(2, 6, 660, 70, "veranda", true, false, false));
+                                                         // Selle laua aknajuures = false, kuna see pole veranda ääres, vaid keskel.
             lauaRepository.save(new RestoraniLaud(3, 4, 550, 190, "veranda", false, false, false));
             lauaRepository.save(new RestoraniLaud(4, 2, 660, 190, "veranda", true, false, false));
 
@@ -57,13 +61,37 @@ public class LauaTeenus {
         }
     }
 
-    // Kasutasin selle meetodi loomiseks AI abi, sest minu esialgne lahendus ei töötanud õigesti ja ma ei saanud aru põhjusest.
+    // Peaaegu kõik selle meetodi loogikast on genereeritud AI poolt. Põhjalikumalt
+    // täpsustasin dokumentatsioonis.
     public List<RestoraniLaud> saaLauadAjaPohjal(String kuupaev, String kellaaeg) {
         List<RestoraniLaud> lauad = lauaRepository.findAll();
-        long seed = (kuupaev + kellaaeg).hashCode();
+        String hour = kellaaeg.split(":")[0];
+        int minute = Integer.parseInt(kellaaeg.split(":")[1]);
+        String interval = hour + (minute < 30 ? ":00" : ":30");
+        long seed = (kuupaev + interval).hashCode();
         Random juhuslikkus = new Random(seed);
-        for (RestoraniLaud laud : lauad) {
-            laud.setOnBroneeritud(juhuslikkus.nextFloat() < 0.4);
+        long kolmTundi = 3 * 60 * 60 * 1000;
+
+        try {
+            String dateTimeString = kuupaev + "T" + kellaaeg;
+            LocalDateTime valitudAeg = LocalDateTime.parse(dateTimeString);
+            long valitudTimestamp = valitudAeg.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+            for (RestoraniLaud laud : lauad) {
+                if (laud.isOnBroneeritud() && laud.getBroneeringuAeg() > 0) {
+                    long erinevus = valitudTimestamp - laud.getBroneeringuAeg();
+                    if (erinevus > kolmTundi || erinevus < 0) {
+                        laud.setOnBroneeritud(false);
+                        laud.setBroneeringuAeg(0);
+                        lauaRepository.save(laud);
+                    }
+                }
+                if (!laud.isOnBroneeritud()) {
+                    laud.setOnBroneeritud(juhuslikkus.nextFloat() < 0.4);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return lauad;
     }
@@ -76,11 +104,9 @@ public class LauaTeenus {
                 .sorted((l1, l2) -> {
                     int skoor1 = arvutaSkoor(l1, eelistused);
                     int skoor2 = arvutaSkoor(l2, eelistused);
-
                     if (skoor1 != skoor2) {
                         return Integer.compare(skoor2, skoor1);
                     }
-
                     return Integer.compare(l1.getKohtadeArv(), l2.getKohtadeArv());
                 })
                 .findFirst()
@@ -102,5 +128,20 @@ public class LauaTeenus {
             skoor += 10;
         }
         return skoor;
+    }
+
+    // Kuna AI aitas lahendada broneeringu ajaga seostuvaid probleeme, siis ka selles meetodiks on kasutatud mõne rea kirjutamiseks AI abi.
+    public RestoraniLaud broneeriLaud(BroneeringuAndmed broneeringuAndmed) {
+        return lauaRepository.findById(broneeringuAndmed.getLauaId()).map(laud -> {
+
+            // Need kolm rida aitas genereerida AI.
+            String dateTimeString = broneeringuAndmed.getKuupaev() + "T" + broneeringuAndmed.getKellaaeg();
+            LocalDateTime broneeringuAeg = LocalDateTime.parse(dateTimeString);
+            long timestamp = broneeringuAeg.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+            laud.setOnBroneeritud(true);
+            laud.setBroneeringuAeg(timestamp);
+            return lauaRepository.save(laud);
+        }).orElse(null);
     }
 }
