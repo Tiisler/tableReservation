@@ -1,0 +1,8 @@
+target/
+.git/
+.gitignore
+mvnw.cmd
+mvnw
+.mvn/
+*.log
+.DS_Store
