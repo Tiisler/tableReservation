@@ -29,7 +29,7 @@ const plussidJaMiinused = computed(() => {
     if (eelmised.vaikneNurk) {
         laud.vaiksesNurgas ? plussid.push(keeled.tekst.vaikneNurk) : miinused.push(keeled.tekst.poleVaikses);
     }
-    if (eelmised.mangunurgaLahedal) {
+    if (eelmised.manguNurk) {
         laud.manguNurgas ? plussid.push(keeled.tekst.mangunurgaLahedal) : miinused.push(keeled.tekst.poleMangunurgas);
     }
 
