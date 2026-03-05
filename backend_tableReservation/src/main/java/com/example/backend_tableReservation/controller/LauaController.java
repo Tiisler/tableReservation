@@ -45,4 +45,9 @@ public class LauaController {
         return ResponseEntity.ok(broneeritudLaud);
     }
 
+    @GetMapping("/status")
+    public ResponseEntity<String> status() {
+        return ResponseEntity.ok("Backend on aktiivne!");
+    }
+
 }
