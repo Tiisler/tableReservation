@@ -18,7 +18,7 @@ import com.example.backend_tableReservation.service.LauaTeenus;
 
 @RestController
 @RequestMapping("/api/lauad")
-@CrossOrigin(origins = { "http://localhost:5173", "http://localhost:5174" })
+@CrossOrigin(origins = { "http://localhost:5173", "http://localhost:5174", "https://tiislertable.netlify.app" })
 public class LauaController {
 
     private final LauaTeenus lauaTeenus;
