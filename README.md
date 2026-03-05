@@ -1,9 +1,19 @@
 **Est**
 Veebirakendus laudade broneerimise jaoks.
 
-Käivitusjuhend:
-  1. Backendi käivitamiseks käivitada fail: backend_tableReservation\src\main\java\com\example\backend_tableReservation\BackendTableReservationApplication.java
-  2. Kui eelnevas sammus pole käivitamise nuppu, siis peab kasutatavas IDEs kuidagi võimaldama Java failide käivitamise
-  3. Kui backend on käivitumise lõpetanud, siis uues konsooliaknas liikuda kausta frontend_tableReservation: "cd .\frontend_tableReservation\"
-  4. Jooksutada käsk "npm install"
-  5. Jooksutada käsk "npm run dev" ja avada Local server: "http://localhost:5173/"
+**Eeltingimused:**
+    1. Arvutisse peab olema installitud Node.js (LTS versioon).
+    2. Arvutisse peab olema installitud Java JDK 17 (või uuem).
+    3. Soovitatav IDE: IntelliJ IDEA või VS Code (koos "Extension Pack for Java" lisaga).
+
+**Käivitusjuhend:**
+    **Backendi käivitamine (Spring Boot): **
+    1. Ava projekt oma IDE-s.
+    2. Oota, kuni IDE laeb Maveni sõltuvused.
+    3. Käivita fail: backend_tableReservation/.../BackendTableReservationApplication.java.
+       Alternatiiv: Kui sul on paigaldatud Maven, võid terminalis bäkendi kaustas sisestada "./mvnw spring-boot:run."    
+    **Frontendi käivitamine (Vue.js):**
+    1. Ava uus terminaliaken ja liigu frontend kausta: "cd .\frontend_tableReservation\."
+    2. Siseta käsk "npm install" (see laeb alla vajalikud raamistikud, sh Vue).
+    3. Sisesta käsk "npm run dev".
+    4. Ava brauseris aadress, mille terminal sulle annab (nt http://localhost:5173/).
