@@ -25,7 +25,7 @@ const broneeri = async () => {
             kellaaeg: store.viimasedEelistused.kellaaeg
         };
 
-        const response = await fetch('http://localhost:8080/api/lauad/broneeri', {
+        const response = await fetch('https://backend-tablereservation.onrender.com/api/lauad/broneeri', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(broneeringuAndmed)

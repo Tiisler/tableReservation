@@ -35,7 +35,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
     }
 
     const laadiLauad = async (kuupaev, kellaaeg) => {
-        const url = `http://localhost:8080/api/lauad?kuupaev=${kuupaev}&kellaaeg=${kellaaeg}`;
+        const url = `https://backend-tablereservation.onrender.com/api/lauad?kuupaev=${kuupaev}&kellaaeg=${kellaaeg}`;
         const response = await fetch(url);
         const andmed = await response.json();
         lauad.value = andmed;
@@ -46,7 +46,7 @@ export const useLaudadeStore = defineStore('laudadeStore', () => {
         const keeled = useKeelteStore();
         viimasedEelistused.value = eelistused;
         try {
-            const response = await fetch(`http://localhost:8080/api/lauad/soovitus`, {
+            const response = await fetch(`https://backend-tablereservation.onrender.com/api/lauad/soovitus`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(eelistused)
