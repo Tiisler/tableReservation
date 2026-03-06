@@ -123,9 +123,9 @@ li {
 }
 
 .broneeri-nupp {
-    background-color: #4CAF50;
+    background-color: #00983D;
     color: white;
-    border: 1px solid #39923c;
+    border: 1px solid #057030;
     padding: 12px;
     border-radius: 8px;
     font-weight: bold;
@@ -136,7 +136,7 @@ li {
 }
 
 .broneeri-nupp:hover {
-    background-color: #45a049;
+    background-color: #07883a;
     transform: translateY(-2px);
 }
 

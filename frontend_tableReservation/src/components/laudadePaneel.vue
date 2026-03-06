@@ -107,7 +107,7 @@ svg {
 }
 
 rect.valitud.soovitus {
-    fill: rgb(111, 170, 111);
+    fill: rgb(98, 158, 98);
 }
 
 @keyframes pulseeriSoovitus {
@@ -127,7 +127,7 @@ rect.valitud.soovitus {
 
 .tsooniSilt {
     fill: #9ca3af;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
     pointer-events: none;
@@ -148,7 +148,8 @@ rect.valitud.soovitus {
 
 .mangunurk {
     font-size: 15px;
-    fill: #36701493;
+    letter-spacing: 2px;
+    fill: #00983da6;;
     text-anchor: middle;
     font-weight: bold;
 }

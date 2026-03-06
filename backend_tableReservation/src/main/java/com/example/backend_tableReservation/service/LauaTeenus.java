@@ -61,8 +61,7 @@ public class LauaTeenus {
         }
     }
 
-    // Peaaegu kõik selle meetodi loogikast on genereeritud AI poolt. Põhjalikumalt
-    // täpsustasin dokumentatsioonis.
+    // Kõik read siin meetodis, mis on seotud aegadega, on lahendatud AI abiga. Täpsem selgitus dokumentatsioonis.
     public List<RestoraniLaud> saaLauadAjaPohjal(String kuupaev, String kellaaeg) {
         List<RestoraniLaud> lauad = lauaRepository.findAll();
         String hour = kellaaeg.split(":")[0];

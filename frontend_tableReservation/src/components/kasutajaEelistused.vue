@@ -6,14 +6,6 @@ import { useKeelteStore } from '../stores/keelteStore.js'
 const store = useLaudadeStore()
 const keeled = useKeelteStore()
 
-const kuupaev = ref('');
-const kellaaeg = ref('');
-const koht = ref('saal');
-const inimesteArv = ref(1);
-const aknaAll = ref(false);
-const vaikneNurk = ref(false);
-const mangunurgaLahedal = ref(false);
-
 const minimaalneKuupaev = computed(() => {
     return new Date().toISOString().split('T')[0];
 });
@@ -84,8 +76,8 @@ function saadaEelistused() {
 }
 
 .nupp {
-    background-color: #4CAF50;
-    border: 1px solid #39923c;
+    background-color: #00983D;
+    border: 1px solid #057030;
     color: white;
     padding: 12px;
     border-radius: 8px;
@@ -97,7 +89,7 @@ function saadaEelistused() {
 }
 
 .nupp:hover {
-    background-color: #45a049;
+    background-color: #07883a;
     transform: translateY(-2px);
 }
 
@@ -130,7 +122,7 @@ select:focus {
 }
 
 input[type="checkbox"] {
-    accent-color: #4CAF50;
+    accent-color: #00983D;
 }
 
 .eelistused-valikud {

@@ -73,7 +73,7 @@ body {
 }
 
 .keeleValik {
-  background-color: #4CAF50;
+  background-color: #00983D;
   color: white;
   border: none;
   font-family: 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
@@ -127,14 +127,14 @@ img:hover {
   min-width: 320px;
   border: 0;
   height: 3px;
-  background-color: #4CAF50;
+  background-color: #00983D;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   margin: 12px 0 30px 0;
   border-radius: 2px;
 }
 
 .pealkiri {
-  color: #4CAF50;
+  color: #00983D;
   font-size: 2.2rem;
   font-weight: bold;
   margin-bottom: 8px;
@@ -207,7 +207,7 @@ img:hover {
 
 .header {
   display: flex;
-  background-color: #4CAF50;
+  background-color: #00983D;;
   padding-left: 1.5vh;
   padding-right: 1.5vh;
   align-items: center;
