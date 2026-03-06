@@ -139,7 +139,7 @@ const broneeri = async () => {
     border: 1px solid #ddd;
     border-radius: 9px;
     font-size: 0.95em;
-    font-family: inherit;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .vormiRida input:focus {
