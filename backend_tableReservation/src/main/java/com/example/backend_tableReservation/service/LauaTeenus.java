@@ -64,14 +64,11 @@ public class LauaTeenus {
         }
     }
 
-    // Kõik read siin meetodis, mis on seotud aegadega, on lahendatud AI abiga. Täpsem selgitus dokumentatsioonis.
+    // Põhimõtteliselt terve see meetod on nüüd kirjutatud AI poolt, sest suuremate vigade parandamise käigus sai see täiesti ümber kirjutatud.
     public List<RestoraniLaud> saaLauadAjaPohjal(String kuupaev, String kellaaeg) {
         List<RestoraniLaud> lauad = lauaRepository.findAll();
         String hour = kellaaeg.split(":")[0];
-        int minute = Integer.parseInt(kellaaeg.split(":")[1]);
-        String interval = hour + (minute < 30 ? ":00" : ":30");
-        long seed = (kuupaev + interval).hashCode();
-        Random juhuslikkus = new Random(seed);
+        String intervall = hour + ":00";
         long kolmTundi = 3 * 60 * 60 * 1000;
 
         try {
@@ -81,15 +78,24 @@ public class LauaTeenus {
 
             for (RestoraniLaud laud : lauad) {
                 if (laud.isOnBroneeritud() && laud.getBroneeringuAeg() > 0) {
-                    long erinevus = valitudTimestamp - laud.getBroneeringuAeg();
-                    if (erinevus > kolmTundi || erinevus < 0) {
+                    long broneeringuAlgus = laud.getBroneeringuAeg() - kolmTundi;
+                    if (valitudTimestamp >= broneeringuAlgus && valitudTimestamp <= laud.getBroneeringuAeg()) {
+                    } else {
                         laud.setOnBroneeritud(false);
-                        laud.setBroneeringuAeg(0);
                         lauaRepository.save(laud);
                     }
-                }
-                if (!laud.isOnBroneeritud()) {
-                    laud.setOnBroneeritud(juhuslikkus.nextFloat() < 0.4);
+                } else if (laud.getBroneeringuAeg() > 0 && !laud.isOnBroneeritud()) {
+                    long broneeringuAlgus = laud.getBroneeringuAeg() - kolmTundi;
+                    if (valitudTimestamp >= broneeringuAlgus && valitudTimestamp <= laud.getBroneeringuAeg()) {
+                        laud.setOnBroneeritud(true);
+                        lauaRepository.save(laud);
+                    }
+                } else if (laud.getBroneeringuAeg() == 0) {
+                    long baseHash = (kuupaev + intervall).hashCode();
+                    long lauaSeed = baseHash + (laud.getLauaNumber() * 2654435761L);
+                    lauaSeed ^= (lauaSeed >> 33);
+                    Random lauaRandom = new Random(lauaSeed);
+                    laud.setOnBroneeritud(lauaRandom.nextFloat() < 0.4);
                 }
             }
         } catch (Exception e) {
@@ -132,17 +138,19 @@ public class LauaTeenus {
         return skoor;
     }
 
-    // Kuna AI aitas lahendada broneeringu ajaga seostuvaid probleeme, siis ka selles meetodiks on kasutatud mõne rea kirjutamiseks AI abi.
+    // Kuna AI aitas lahendada broneeringu ajaga seostuvaid probleeme, siis ka selles meetodis on kasutatud mõne rea kirjutamiseks AI abi.
     public RestoraniLaud broneeriLaud(BroneeringuAndmed broneeringuAndmed) {
         return lauaRepository.findById(broneeringuAndmed.getLauaId()).map(laud -> {
 
-            // Need kolm rida aitas genereerida AI.
+            // Need read aitas genereerida AI.
             String dateTimeString = broneeringuAndmed.getKuupaev() + "T" + broneeringuAndmed.getKellaaeg();
             LocalDateTime broneeringuAeg = LocalDateTime.parse(dateTimeString);
             long timestamp = broneeringuAeg.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+            long kolmTundi = 3 * 60 * 60 * 1000;
+            long broneeringuLopp = timestamp + kolmTundi; 
 
             laud.setOnBroneeritud(true);
-            laud.setBroneeringuAeg(timestamp);
+            laud.setBroneeringuAeg(broneeringuLopp); 
             return lauaRepository.save(laud);
         }).orElse(null);
     }
