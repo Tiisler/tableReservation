@@ -1,3 +1,5 @@
+<!-- Kasutaja soovitava kuupäeva, kellaja ning eelistuste valimise paneel -->
+
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useLaudadeStore } from '../stores/laudadeStore.js'

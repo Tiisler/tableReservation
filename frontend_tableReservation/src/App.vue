@@ -1,3 +1,5 @@
+<!-- Rakenduse peakomponent, kus asub päis, teiste komponentide väljakutsumine ja üldine disain/paigutus -->
+
 <script setup>
 import KasutajaEelistused from './components/kasutajaEelistused.vue';
 import ValitudLauaPaneel from './components/valitudLauaPaneel.vue';
@@ -17,7 +19,7 @@ const keeled = useKeelteStore();
       <div class="logoJaTekst">
         <img width="110" height="110"
           src="/italia_logo.png"
-          alt="">
+          alt="logo">
         <h1 id="pealkiri">Restoran <br>
           <hr id="pealkirjaJoon">Italia
         </h1>

@@ -1,3 +1,5 @@
+// Andmete mudel, mis esindab broneeringu kinnitamiseks kasutatavaid andmeid.
+
 package com.example.backend_tableReservation.model;
 
 public class BroneeringuAndmed {

@@ -1,3 +1,6 @@
+// Teenus, mis sisaldab kogu äriloogikat seoses laudadega - nende näitamine, 
+// parima laua arvutamine kasutaja eelistuste põhjal, broneeringu kinnitamine jne.
+
 package com.example.backend_tableReservation.service;
 
 import com.example.backend_tableReservation.model.KasutajaEelistused;

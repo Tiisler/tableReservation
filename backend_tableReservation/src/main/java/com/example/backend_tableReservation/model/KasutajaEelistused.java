@@ -1,3 +1,5 @@
+// Andmete mudel, mis esindab kasutaja erinevaid eelistusi nagu asukoht, inimeste arv, kuupäev, kellaaeg jne.
+
 package com.example.backend_tableReservation.model;
 
 public class KasutajaEelistused {

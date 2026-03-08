@@ -1,3 +1,5 @@
+<!-- Paneel valitud laua info kuvamiseks -->
+
 <script setup>
 import { computed } from 'vue';
 import { useLaudadeStore } from '@/stores/laudadeStore';

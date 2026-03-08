@@ -1,3 +1,5 @@
+// Andmebaasi juurdepääsuvahendaja, mis laadib ja salvestab lauad andmebaasi. Kasutab JPA-d automaatseteks SQL päringuteks.
+
 package com.example.backend_tableReservation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

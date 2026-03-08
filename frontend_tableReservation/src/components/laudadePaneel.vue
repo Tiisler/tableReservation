@@ -1,3 +1,5 @@
+<!-- Saaliplaani kuvamise ning laudade valimise paneel -->
+
 <script setup>
 import { useLaudadeStore } from '@/stores/laudadeStore';
 import { useKeelteStore } from '@/stores/keelteStore';

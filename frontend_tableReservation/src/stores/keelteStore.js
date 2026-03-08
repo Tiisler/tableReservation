@@ -1,3 +1,5 @@
+// Hoiab kasutaja keelevalikut ja tõlkeid, et rakendus saaks kuvada tekste vastavalt valitud keelele
+
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue'
 

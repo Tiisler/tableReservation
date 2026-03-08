@@ -1,3 +1,5 @@
+<!-- Broneeringu paneel, kus kasutaja sisestab oma andmed broneeringu kinnitamiseks -->
+
 <script setup>
 import { ref } from 'vue';
 import { useLaudadeStore } from '@/stores/laudadeStore';

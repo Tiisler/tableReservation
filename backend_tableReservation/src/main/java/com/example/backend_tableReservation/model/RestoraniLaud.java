@@ -1,3 +1,4 @@
+// Andmete mudel, mis esindab lauda koos selle omaduste, koordinaatide ja broneeringustaatusega.
 
 package com.example.backend_tableReservation.model;
 

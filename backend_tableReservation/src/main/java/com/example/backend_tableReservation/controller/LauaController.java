@@ -1,8 +1,8 @@
-package com.example.backend_tableReservation.controller;
+// REST-kontroller, mis käsitleb päringuid laudade broneerimise, näitamise ja soovitamise kohta.
 
+package com.example.backend_tableReservation.controller;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

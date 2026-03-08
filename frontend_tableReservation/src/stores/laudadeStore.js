@@ -1,3 +1,6 @@
+// Hoiab lauaandmeid, valitud laua infot, broneerimispaneeli nähtavust ja kasutaja viimaseid eelistusi,
+// et rakendus saaks kuvada sobivaid laudu ja võimaldada broneerimist vastavalt kasutaja soovidele.
+
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useKeelteStore } from './keelteStore';

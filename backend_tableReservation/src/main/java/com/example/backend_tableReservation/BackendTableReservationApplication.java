@@ -1,3 +1,5 @@
+// Peamine Spring Boot rakenduse klass, mis käivitab kogu backendi teenuse.
+
 package com.example.backend_tableReservation;
 
 import org.springframework.boot.SpringApplication;
